@@ -17,8 +17,15 @@ numbers = [
     ('a', 'b', 'c', 'd', 'f', 'g')
 ]
 
+reset = 12
+minus = 16
+more = 18
+
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
+GPIO.setup(reset, GPIO.IN)
+GPIO.setup(minus, GPIO.IN)
+GPIO.setup(more, GPIO.IN)
 
 
 def setupLed1():
@@ -78,13 +85,15 @@ def createNumber2Leds(led1, led2, number):
 def digiTurno():
     contador = 0
     while True:
-        raw_input()
-        createNumber2Leds(led1, led2, contador)
-        print("Numero actual = "+str(contador))
-        if contador < 99:
-            contador += 1
-        else:
+        if GPIO.input(reset):
             contador = 0
+        if GPIO.input(more):
+            createNumber2Leds(led1, led2, contador)
+            print("Numero actual = "+str(contador))
+            if contador < 99:
+                contador += 1
+            else:
+                contador = 0
 
 
 def main():
