@@ -102,13 +102,13 @@ def digiTurno():
             print("Numero actual = "+str(contador))
             time.sleep(.3)
         if GPIO.input(more):
-            print("Numero actual = "+str(contador))
-            createNumber2Leds(led1, led2, contador)
-            time.sleep(.3)
             if contador < 99:
                 contador += 1
             else:
                 contador = 0
+            print("Numero actual = "+str(contador))
+            createNumber2Leds(led1, led2, contador)
+            time.sleep(.3)
         if GPIO.input(minus):
             if contador == 0:
                 contador = 99
