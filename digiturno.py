@@ -88,6 +88,9 @@ def digiTurno():
     while True:
         if GPIO.input(reset):
             contador = 0
+            print("-"*20+" RESET "+"-"*20)
+            createNumber2Leds(led1, led2, contador)
+            print("Numero actual = "+str(contador))
             time.sleep(.3)
         if GPIO.input(more):
             createNumber2Leds(led1, led2, contador)
@@ -97,6 +100,14 @@ def digiTurno():
                 contador += 1
             else:
                 contador = 0
+        if GPIO.input(minus):
+            if contador == 0:
+                contador = 99
+            else:
+                contador -= 1
+            createNumber2Leds(led1, led2, contador)
+            print("Numero actual = "+str(contador))
+            time.sleep(.3)
 
 
 def main():
@@ -104,6 +115,7 @@ def main():
     setupLed2()
     turnOffAllLeds()
     try:
+        print("Presione un boton para continuar")
         digiTurno()
     except (KeyboardInterrupt, SystemExit):
         GPIO.cleanup()
