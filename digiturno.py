@@ -86,9 +86,9 @@ def createNumber2Leds(led1, led2, number):
 def titileoNumber2Leds(led1, led2, number):
     for i in range(3):
         turnOffAllLeds()
-        time.sleep(0.5)
+        time.sleep(0.25)
         createNumber2Leds(led1, led2, number)
-        time.sleep(0.5)
+        time.sleep(0.25)
 
 
 def digiTurno():
@@ -113,7 +113,7 @@ def digiTurno():
             if contador == 0:
                 contador = 99
             else:
-                contador -= 1
+                contador = contador-1
             print("Numero actual = "+str(contador))
             createNumber2Leds(led1, led2, contador)
             time.sleep(.3)
