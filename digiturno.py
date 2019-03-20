@@ -86,7 +86,7 @@ def createNumber2Leds(led1, led2, number):
 def titileoNumber2Leds(led1, led2, number):
     for i in range(3):
         turnOffAllLeds()
-        time.sleep(.5)
+        time.sleep(1)
         createNumber2Leds(led1, led2, number)
 
 
