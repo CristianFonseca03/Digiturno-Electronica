@@ -1,4 +1,5 @@
 import RPi.GPIO as GPIO
+import time
 
 led1 = [('g', 40), ('f', 38), ('a', 36), ('b', 32),
         ('e', 26), ('d', 24), ('c', 22)]
@@ -87,9 +88,11 @@ def digiTurno():
     while True:
         if GPIO.input(reset):
             contador = 0
+            time.sleep(.3)
         if GPIO.input(more):
             createNumber2Leds(led1, led2, contador)
             print("Numero actual = "+str(contador))
+            time.sleep(.3)
             if contador < 99:
                 contador += 1
             else:
