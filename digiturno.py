@@ -83,18 +83,26 @@ def createNumber2Leds(led1, led2, number):
         createNumber(led2, unidades)
 
 
+def titileoNumber2Leds(led1, led2, number):
+    for i in range(3):
+        turnOffAllLeds()
+        time.sleep(.5)
+        createNumber2Leds(led1, led2, number)
+
+
 def digiTurno():
     contador = 0
+    titileoNumber2Leds(led1, led2, contador)
     while True:
         if GPIO.input(reset):
             contador = 0
             print("-"*20+" RESET "+"-"*20)
-            createNumber2Leds(led1, led2, contador)
+            titileoNumber2Leds(led1, led2, contador)
             print("Numero actual = "+str(contador))
             time.sleep(.3)
         if GPIO.input(more):
-            createNumber2Leds(led1, led2, contador)
             print("Numero actual = "+str(contador))
+            createNumber2Leds(led1, led2, contador)
             time.sleep(.3)
             if contador < 99:
                 contador += 1
@@ -105,8 +113,8 @@ def digiTurno():
                 contador = 99
             else:
                 contador -= 1
-            createNumber2Leds(led1, led2, contador)
             print("Numero actual = "+str(contador))
+            createNumber2Leds(led1, led2, contador)
             time.sleep(.3)
 
 
